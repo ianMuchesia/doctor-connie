@@ -2,6 +2,7 @@
 
 <?php
 require_once "../models/database.php";
+require_once "../models/appointments.php";
 
 if (isset($_POST['login'])) {
 
@@ -42,4 +43,50 @@ if (isset($_POST['login'])) {
             exit();
         }
     }
+
+
+
 }
+
+
+
+if(isset($_GET['appointments'])){
+    $appointments = getAllPatientsAppointments();
+  
+    $jsonAppointments = json_encode($appointments);
+  
+    echo $jsonAppointments;
+  
+  }
+  
+
+
+
+if (isset($_POST['name'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $session = $_POST['session'];
+    $date = $_POST['date'];
+  
+  
+    $patientExists = patientExists($email);
+  
+  
+  
+    if ($patientExists) {
+      $appointmentId = bookAppointmentOnly($patientExists, $date, $session);
+    } else {
+      $appointmentId = bookAppointments($name, $email, $phone, $session, $date);
+    }
+  
+  
+  
+    $appointment = getSingleAppointmentWithPatientDetails($appointmentId);
+  
+  
+    $jsonAppointment = json_encode($appointment);
+  
+    echo $jsonAppointment;
+  }
+  

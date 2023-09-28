@@ -362,4 +362,124 @@ h5 {
     margin:0 30px;
   
   }
+
+
+
+  table{
+    width: 100%;
+    /* border-collapse: collapse; */
+    margin: 1em 0em;
+  }
+  table thead tr th{
+    text-align: left;
+    padding: 0.5em 1em;
+    margin: 2em 0em;
+    background: var(--light);
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 0.9em;
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+  }
+  table tbody tr td{
+    padding: 0.5em 1em;
+    margin: 2em 0em;
+    background: var(--light);
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 0.9em;
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+  }
+  td{
+    margin: 2em;
+  }
+  table tbody tr td a{
+    color: var(--blue);
+  }
+  table tbody tr td a:hover{
+    color: var(--blue);
+  }
+  
+  
+  .open{
+    color:#fff;
+    background-color: #3c91e6;
+  }
+  table tbody tr td .btn{
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    background: var(--blue);
+    color: var(--light);
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+    transition: var(--transition);
+  }
+  table tbody tr td .btn:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-success{
+    background: green;
+  }
+  table tbody tr td .btn-warning{
+    background: var(--yellow);
+    color: #060714;
+  }
+  table tbody tr td .btn-danger{
+    background: var(--red);
+  }
+  table tbody tr td .btn-checkin{
+    margin: 1em;
+  }
+  table tbody tr td .btn-checkin:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-checkout{
+    margin: 1em;
+  }
+  table tbody tr td .btn-checkout:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-delete{
+    margin: 1em;
+  }
+  table tbody tr td .btn-delete:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-edit{
+    margin: 1em;
+  }
+  table tbody tr td .btn-edit:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-view{
+    margin: 1em;
+  }
+  table tbody tr td .btn-view:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-approve{
+    margin: 1em;
+  }
+  table tbody tr td .btn-approve:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+  table tbody tr td .btn-decline{
+    margin: 1em;
+  }
+  table tbody tr td .btn-decline:hover{
+    background: var(--blue);
+    box-shadow: var(--shadow-3);
+  }
+
+
   

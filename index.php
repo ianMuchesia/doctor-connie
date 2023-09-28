@@ -2,6 +2,7 @@
 <?php
 
 require_once "models/database.php";
+require_once "models/appointments.php";
 include_once "views/header.php";
 include_once "views/sidebar.php";
 
@@ -50,6 +51,7 @@ switch ($action) {
         include "views/appointments.php";
         break;
     case "edit_appointment":
+        $appointments = getAllActivePatients();
         include "views/edit_appointment.php";
         break;
     case "add_appointment":
