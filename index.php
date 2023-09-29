@@ -8,6 +8,7 @@ include_once "views/sidebar.php";
 
 
 
+
 session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -45,6 +46,9 @@ if (!$action) {
 
 switch ($action) {
     case "dashboard":
+       $patients = countTotalPatients();
+       $messages = countTotalMessages();
+       $appointments = countTotalActiveAppointments();
         include "views/dashboard.php";
         break;
     case "appointments":
@@ -58,12 +62,43 @@ switch ($action) {
         include "views/add_appointment.php";
         break;
     case "messages":
+        $messages = getAllMessages();
         include "views/messages.php";
         break;
     case "logout":
         include_once "views/logout.php";
         break;
+    case "single_patient":
+       
+        include "views/single_patient.php";
+        break;
+
+    case "cancel_appointment":
+        $appointment_id = filter_input(INPUT_POST, 'appointment_id', FILTER_VALIDATE_INT);
+        
+        if (!$appointment_id) {
+            header('Location: .?action=edit_appointment');
+            exit;
+        }
+        cancelAppointment($appointment_id);
+        header('Location: .?action=edit_appointment');
+        break;
+    case "delete_appointment":
+        $appointment_id = filter_input(INPUT_POST, 'appointment_id', FILTER_VALIDATE_INT);
+
+        if (!$appointment_id) {
+            header('Location: .?action=edit_appointment');
+            exit;
+        }
+        deleteAppointment($appointment_id);
+        header('Location: .?action=edit_appointment');
+        break;
+
+
     default:
+    $patients = countTotalPatients();
+    $messages = countTotalMessages();
+    $appointments = countTotalActiveAppointments();
         include "views/dashboard.php";
         break;
 }

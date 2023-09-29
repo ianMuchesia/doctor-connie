@@ -21,6 +21,21 @@
         </a> -->
     </div>
     <div class="">
+    <table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Morning Session</th>
+            <th>Afternoon Session</th>
+            <th>Evening Session</th>
+        </tr>
+    </thead>
+    <tbody id="schedule">
+        <!-- This table body will be populated dynamically with JavaScript -->
+    </tbody>
+</table>
+    </div>
+    <div class="">
         <form id="book-appointment" class="form">
             <div class="form-group">
                 <label for="name" class="form-label">Name</label>
@@ -32,13 +47,8 @@
             </div>
             <div class="form-group">
                 <label for="session" class="form-label">Session</label>
-                <!-- <input type="text" name="session" placeholder="Enter Session" id="session" class="form-input"> -->
-                <select name="session" id="session" class="form-input">
-                <option value="">--please select--</option>
-                    <option value="1">Morning</option>
-                    <option value="2">Afternoon</option>
-                    <option value="3">Evening</option>
-                </select>
+                <input type="text" name="session" placeholder="Enter Session" id="session" class="form-input" readonly>
+                
             </div>
             <div class="form-group">
                 <label for="phone" class="form-label">Phone Number</label>
@@ -47,7 +57,7 @@
             <div class="form-group">
              
             <label for="date" class="form-label">Date</label>
-            <input type="date" name="date" placeholder="Enter Date" id="date" class="form-input">
+            <input type="text" name="date" placeholder="Enter Date" id="date" class="form-input" readonly>
             </div>
             <input type="submit" value="Add Appointment" class="btn btn-primary">
         </form>

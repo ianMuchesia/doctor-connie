@@ -76,15 +76,27 @@ function formatDateForMySQL(inputDate) {
             sessionCell.textContent = `Session ${session}`;
             sessionCell.id = `${currentDate.toDateString()}, Session ${session}`;
   
-            // Check if this session is booked in the response
-            const isBooked = response.some((item) => {
+            const booking = response.find((item) => {
+              // Convert item's date to a string in the same format as currentDate
               const sessionDate = new Date(item.date).toDateString();
+              
+              // Check if the session date and session ID match
               return sessionDate === currentDate.toDateString() && item.session_id === session;
             });
-  
-            // Set the cell content based on whether it's booked or open
-            sessionCell.textContent = isBooked ? "Booked" : "Open";
-            sessionCell.classList= isBooked?"booked":"open";
+          
+            // Set the cell content and class based on whether it's booked, open, or cancelled
+            if (booking) {
+              if (booking.status === "ACTIVE") {
+                sessionCell.textContent = "Booked";
+                sessionCell.classList.add("booked");
+              } else if (booking.status === "CANCELLED") {
+                sessionCell.textContent = "Cancelled";
+                sessionCell.classList.add("cancelled");
+              }
+            } else {
+              sessionCell.textContent = "Open";
+              sessionCell.classList.add("open");
+            }
   
             sessionCells.push(sessionCell);
           }
@@ -108,18 +120,23 @@ function formatDateForMySQL(inputDate) {
   
   
   function logTableCellTextContent() {
-    console.log("logTableCellTextContent function called.");
+    // console.log("logTableCellTextContent function called.");
     
-    const tableCells = document.querySelectorAll("#schedule td");
+    const tableCells = document.querySelectorAll("td");
   
     
     tableCells.forEach(function (td) {
       td.addEventListener("click", function () {
         if (this.classList.contains("day")) return;
-        if(this.textContent === "Booked")return;
-        console.log(this.classList)
-       document.querySelector("#showdate").textContent = this.id
-      });
+        if(this.textContent !== "Open")return;
+        
+
+        const session = this.id.split(", ")[1].slice(-1)[0];
+        document.getElementById("session").value = session
+
+        const date = formatDateForMySQL(this.id.split(", ")[0]);
+        document.getElementById('date').value = date;
+    });
     });
   }
   
@@ -147,6 +164,8 @@ function formatDateForMySQL(inputDate) {
       alert("Please fill all the inputs");
       return;
     }
+
+  
   
   
   
@@ -169,7 +188,12 @@ function formatDateForMySQL(inputDate) {
         // )}`;
 
         alert("Appointment booked successfully");
-        window.location.href = "/doctor/views/appointments.php";
+        document.getElementById("name").value = "";
+        document.getElementById("email").value="";
+        document.getElementById("phone").value="";
+        document.getElementById("session").value="";
+        document.getElementById('date').value="";
+        createDynamicSchedule(logTableCellTextContent);
       } else {
         console.error("Invalid response:", response);
       }
@@ -177,3 +201,6 @@ function formatDateForMySQL(inputDate) {
     xhr.send(params);
   });
   
+
+
+

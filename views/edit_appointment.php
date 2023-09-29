@@ -27,6 +27,7 @@
             <tr>
                 <th>Name</th>
                 <th>Session</th>
+                <th>Date</th>
                 <th>Phone Number</th>
                 <th>Edit</th>
                 <th>Remove</th>
@@ -37,19 +38,21 @@
                 <tr>
                     <td><?php echo $appointment['name']; ?></td>
                     <td><?php echo $appointment['session']; ?></td>
+                    <td><?php echo $appointment['date']; ?></td>
+
                     <td><?php echo $appointment['phone']; ?></td>
                     <td>
                         <form action="." method="post">
-                            <input type="hidden" name="action" value="edit_appointment">
+                            <input type="hidden" name="action" value="cancel_appointment">
                             <input type="hidden" name="appointment_id" value="<?php echo $appointment['appointment_id']; ?>">
-                            <input type="submit" value="Edit">
+                            <input type="submit" value="Cancel" class="btn btn-edit">
                         </form>
                     </td>
                     <td>
                         <form action="." method="post">
                             <input type="hidden" name="action" value="delete_appointment">
                             <input type="hidden" name="appointment_id" value="<?php echo $appointment['appointment_id']; ?>">
-                            <input type="submit" value="Remove">
+                            <input type="submit" value="Remove" class="btn btn-delete">
                         </form>
                     </td>
                 </tr>

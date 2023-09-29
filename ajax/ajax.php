@@ -90,3 +90,17 @@ if (isset($_POST['name'])) {
     echo $jsonAppointment;
   }
   
+
+
+  if(isset($_POST['session-look'])){
+    $session = $_POST['session-look'];
+    $date = $_POST['date'];
+  
+    $appointments = getAppointmentByDate($session, $date);
+
+  
+    $jsonAppointments = json_encode($appointments);
+  
+    echo $jsonAppointments;
+  
+  }
